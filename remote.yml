@@ -1,9 +1,11 @@
 ---
 - hosts: all
+  environment:
+    http_proxy: http://192.168.1.100:3142
   tasks:
   - include_role:
       name: common
     vars:
     - local_vpn_ip: 10.8.9.2
     - remote_vpn_ip: 10.8.9.1
-    - qbox_core_ip: 10.8.8.5
+    - qtun_core_ip: 10.8.8.5
