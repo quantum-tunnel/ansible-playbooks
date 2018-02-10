@@ -1,0 +1,8 @@
+---
+- hosts: all
+  tasks:
+  - include_role:
+      name: common
+    vars:
+    - local_vpn_ip: 10.8.9.1
+    - remote_vpn_ip: 10.8.9.2
