@@ -10,3 +10,11 @@
     - remote_vpn_ip: 10.8.9.1
     - qtun_core_ip: 10.8.8.5
     - role: remote
+
+- hosts: all
+  environment:
+    http_proxy: http://192.168.1.100:3142
+  tasks:
+  - include_role:
+      name: inspec
+
