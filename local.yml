@@ -4,15 +4,26 @@
     http_proxy: http://192.168.1.100:3142
   tasks:
   - include_role:
-      name: common
-    vars:
-    - local_vpn_ip: 10.8.9.1
-    - remote_vpn_ip: 10.8.9.2
-    - role: local
+      name: modules
 
 - hosts: all
   environment:
     http_proxy: http://192.168.1.100:3142
   tasks:
   - include_role:
-      name: inspec
+      name: common
+    vars:
+    - local_vpn_ip: 192.168.0.10
+    - remote_vpn_ip: 192.168.0.20
+    - remote_vpn_subnet: 198.19.0.0/16
+    - local_interface: enp0s8
+    - transit_interface: enp0s9
+    - vpn_interface: tun0
+    - role: local
+
+#- hosts: all
+#  environment:
+#    http_proxy: http://192.168.1.100:3142
+#  tasks:
+#  - include_role:
+#      name: inspec

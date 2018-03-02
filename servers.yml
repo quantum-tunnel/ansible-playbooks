@@ -1,0 +1,19 @@
+---
+- hosts: all
+  tasks:
+  - apt:
+      name: "{{ item }}"
+      state: present
+    with_items:
+    - snmp
+    - snmpd
+    - nginx
+  - lineinfile:
+      path: /etc/network/interfaces
+      line: "      up ip route add {{ tunnel_target }}/16 via {{ tunnel_device_ip }}"
+      insertafter: "iface {{ tunnel_device_nic }} inet static"
+    when: tunnel_target is defined
+    notify: Restart Interface
+  handlers:
+  - name: Restart Interface
+    shell: "ifdown {{ tunnel_device_nic }} ; ifup {{ tunnel_device_nic }}"

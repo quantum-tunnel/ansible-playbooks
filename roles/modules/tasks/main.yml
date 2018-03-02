@@ -1,0 +1,8 @@
+---
+- name: Install python-ipaddr
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+  - python-ipaddr
+  - python-netaddr
